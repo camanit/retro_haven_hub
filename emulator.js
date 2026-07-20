@@ -132,7 +132,7 @@ function loadShareware(gameId, embedUrl) {
     if (gameId === 'doom') gameTitle = 'DOOM (Shareware 1993)';
     else if (gameId === 'simcity') gameTitle = 'SimCity 2000 (Demo 1993)';
     else if (gameId === 'pop') gameTitle = 'Prince of Persia (MS-DOS 1990)';
-    else if (gameId === 'cnc') gameTitle = 'Command & Conquer (1995)';
+    else if (gameId === 'dune2') gameTitle = 'Dune II: Westwood RTS (1992)';
 
     title.innerText = gameTitle;
     iframe.src = embedUrl;
