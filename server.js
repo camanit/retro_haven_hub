@@ -33,7 +33,13 @@ const server = http.createServer((req, res) => {
                 res.end(`Server Error: ${error.code}`);
             }
         } else {
-            res.writeHead(200, { 'Content-Type': contentType });
+            const headers = { 'Content-Type': contentType };
+            if (urlPath === '/player.html') {
+                headers['Cross-Origin-Embedder-Policy'] = 'require-corp';
+                headers['Cross-Origin-Opener-Policy'] = 'same-origin';
+                headers['Access-Control-Allow-Origin'] = '*';
+            }
+            res.writeHead(200, headers);
             res.end(content, 'utf-8');
         }
     });
