@@ -1,0 +1,684 @@
+:root {
+    --bg-color: #080a10;
+    --panel-bg: rgba(17, 22, 37, 0.65);
+    --border-color: rgba(0, 255, 102, 0.12);
+    --accent-green: #00ff66;
+    --accent-orange: #f97316;
+    --accent-cyan: #06b6d4;
+    --text-light: #f3f4f6;
+    --text-muted: #9ca3af;
+    --glass-blur: blur(12px);
+    --neon-glow: 0 0 15px rgba(0, 255, 102, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.06) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 255, 102, 0.06) 0px, transparent 50%);
+    color: var(--text-light);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(10, 13, 22, 0.8);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.logo-text span {
+    color: var(--accent-green);
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+}
+
+.nav-utils {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: auto;
+    margin-left: 40px;
+}
+
+.bgm-player-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 255, 102, 0.05);
+    border: 1px solid rgba(0, 255, 102, 0.25);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.bgm-icon {
+    color: var(--accent-green);
+    text-shadow: 0 0 5px rgba(0, 255, 102, 0.3);
+}
+
+.bgm-control-btn {
+    background: var(--accent-green);
+    color: #080a10;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    transition: all 0.15s ease;
+}
+
+.bgm-control-btn:hover {
+    background: #fff;
+    box-shadow: var(--neon-glow);
+}
+
+.bgm-control-btn.active {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-tab-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab-btn.active {
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+    background: rgba(0, 255, 102, 0.06);
+    box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.1), var(--neon-glow);
+}
+
+/* ================= CONTAINER ================= */
+.app-container {
+    flex-grow: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.hero-section {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.hero-section h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 6px;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.hero-section p {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* ================= TAB SYSTEM ================= */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= ACTION BUTTONS ================= */
+.action-btn {
+    background: var(--accent-green);
+    color: #080a10;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 255, 102, 0.3);
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 255, 102, 0.45);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.action-btn-outline {
+    background: transparent;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn-outline:hover {
+    background: rgba(0, 255, 102, 0.08);
+    box-shadow: var(--neon-glow);
+}
+
+/* ================= TAB 1: PLAYROOM ================= */
+.emulator-panel {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.emulator-viewport {
+    height: 520px;
+    background: #000;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.screen-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.drop-zone-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.screen-empty h3 {
+    font-family: 'Share Tech Mono', monospace;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.screen-empty p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.emulator-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: var(--glass-blur);
+}
+
+.sidebar-card h4 {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent-green);
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+    padding-bottom: 6px;
+}
+
+.sidebar-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.control-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.control-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+.key-badge {
+    background: #1f2937;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Share Tech Mono', monospace;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
+.clickable-key {
+    background: #1f2937;
+    border: 1px solid rgba(0, 255, 102, 0.2);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent-green);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.clickable-key:hover {
+    background: var(--accent-green);
+    color: #080a10;
+    box-shadow: var(--neon-glow);
+    transform: scale(1.05);
+}
+
+.clickable-key.waiting {
+    background: var(--accent-orange);
+    color: #fff;
+    border-color: #ffaa00;
+    animation: keyPulse 1s infinite alternate;
+}
+
+@keyframes keyPulse {
+    0% { opacity: 0.7; box-shadow: 0 0 5px rgba(249, 115, 22, 0.5); }
+    100% { opacity: 1; box-shadow: 0 0 15px rgba(249, 115, 22, 0.8); }
+}
+
+/* ================= TAB 2: ARCADE CLASSICS ================= */
+.arcade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: var(--glass-blur);
+    transition: all 0.25s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-orange);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
+}
+
+.game-card-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.game-card-info {
+    padding: 20px;
+}
+
+.game-card-info h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.game-card-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.play-btn-card {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent-orange);
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Arcade Iframe Overlay Player */
+.arcade-player {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    max-width: 760px;
+    height: 85vh;
+    max-height: 520px;
+    background: #0d1117;
+    border: 2px solid var(--accent-orange);
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #161b22;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+    flex-shrink: 0;
+}
+
+.player-header h4 {
+    font-family: 'Share Tech Mono', monospace;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.fullscreen-btn-modal {
+    background: transparent;
+    border: none;
+    color: var(--accent-green);
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.fullscreen-btn-modal:hover {
+    color: #fff;
+    text-shadow: var(--neon-glow);
+}
+
+.close-btn:hover {
+    color: #ef4444;
+}
+
+.player-iframe-wrapper {
+    position: relative;
+    flex-grow: 1;
+    background: #000;
+    width: 100%;
+    height: 100%;
+}
+
+.player-iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.player-footer {
+    padding: 12px 20px;
+    background: #161b22;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ================= TAB 3: INDIE ALLEY ================= */
+.indie-showcase {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+}
+
+.homebrew-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.homebrew-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    backdrop-filter: var(--glass-blur);
+    position: relative;
+}
+
+.homebrew-badge {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(6, 182, 212, 0.15);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.homebrew-card h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.homebrew-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.homebrew-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 12px;
+    margin-bottom: 16px;
+}
+
+.heart-icon {
+    color: #ef4444;
+}
+
+.indie-info-panel {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(0, 255, 102, 0.05));
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.indie-info-panel h4 {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent-cyan);
+    font-size: 1.15rem;
+}
+
+.indie-info-panel p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ================= TAB 4: FAN TRIBUTES ================= */
+.tribute-panel {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 30px;
+}
+
+.tribute-sidebar {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    backdrop-filter: var(--glass-blur);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tribute-sidebar h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.3rem;
+    color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.tribute-sidebar p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.tribute-viewport-container {
+    height: 520px;
+    background: #000;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    background: rgba(10, 13, 22, 0.8);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 50px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    .emulator-panel, .indie-showcase, .tribute-panel {
+        grid-template-columns: 1fr;
+    }
+    .tribute-panel {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
