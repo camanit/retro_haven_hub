@@ -15,6 +15,9 @@
     
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- JS-DOS Native WebAssembly Engine -->
+    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
 </head>
 <body>
 
@@ -111,7 +114,7 @@
 
             <div class="arcade-grid">
                 <!-- Doom Card -->
-                <div class="game-card" onclick="loadShareware('doom', 'https://dos.zone/player/?bundleUrl=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fdoom.jsdos')">
+                <div class="game-card" onclick="loadShareware('doom', 'https://cdn.dos.zone/custom/dos/doom.jsdos')">
                     <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg');"></div>
                     <div class="game-card-info">
                         <h3>DOOM (Shareware 1993)</h3>
@@ -121,7 +124,7 @@
                 </div>
 
                 <!-- SimCity Card -->
-                <div class="game-card" onclick="loadShareware('simcity', 'https://dos.zone/player/?bundleUrl=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fsimcity-2000.jsdos')">
+                <div class="game-card" onclick="loadShareware('simcity', 'https://cdn.dos.zone/custom/dos/simcity-2000.jsdos')">
                     <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/a/a6/SimCity_2000_cover.jpg');"></div>
                     <div class="game-card-info">
                         <h3>SimCity 2000 (1993)</h3>
@@ -131,7 +134,7 @@
                 </div>
 
                 <!-- Prince of Persia Card -->
-                <div class="game-card" onclick="loadShareware('pop', 'https://dos.zone/player/?bundleUrl=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fprince-of-persia.jsdos')">
+                <div class="game-card" onclick="loadShareware('pop', 'https://cdn.dos.zone/custom/dos/prince-of-persia.jsdos')">
                     <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/e/e0/PoP_Original_Cover.jpg');"></div>
                     <div class="game-card-info">
                         <h3>Prince of Persia (1990)</h3>
@@ -140,12 +143,12 @@
                     </div>
                 </div>
 
-                <!-- Command & Conquer Card -->
-                <div class="game-card" onclick="loadShareware('cnc', 'https://dos.zone/player/?bundleUrl=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fcommand-and-conquer.jsdos')">
+                <!-- Dune II (Westwood RTS Classic) Card -->
+                <div class="game-card" onclick="loadShareware('dune2', 'https://cdn.dos.zone/custom/dos/dune-2.jsdos')">
                     <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/5/5a/C%26C_Red_Alert_2_Coverart.jpg');"></div>
                     <div class="game-card-info">
-                        <h3>Command & Conquer (RTS)</h3>
-                        <p>Game strategi RTS legendaris buatan Westwood Studios. Pimpin pasukan Anda langsung di browser!</p>
+                        <h3>Dune II: Westwood RTS (1992)</h3>
+                        <p>Game strategi pelopor buatan Westwood Studios sebelum Red Alert & C&C. Mainkan langsung di browser!</p>
                         <span class="play-btn-card">▶ MAIN SEKARANG</span>
                     </div>
                 </div>
@@ -162,10 +165,10 @@
                 </div>
                 <div class="player-iframe-wrapper">
                     <div class="scanlines"></div>
-                    <iframe id="arcade-iframe" src="" allowfullscreen></iframe>
+                    <div id="arcade-game-container" style="width: 100%; height: 100%;"></div>
                 </div>
                 <div class="player-footer">
-                    <p>💡 Menggunakan emulator web resmi yang aman dan legal dari Internet Archive (Archive.org).</p>
+                    <p>💡 Menggunakan emulator JS-DOS WebAssembly yang cepat, aman, dan dapat dimainkan langsung di browser.</p>
                 </div>
             </div>
         </section>

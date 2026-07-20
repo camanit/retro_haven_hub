@@ -122,30 +122,50 @@ function launchEmulatorWithFile(file, system) {
     }, 1200);
 }
 
-// --- Tab 2: Arcade Classics (Shareware Loader) ---
-function loadShareware(gameId, embedUrl) {
+// --- Tab 2: Arcade Classics (JS-DOS Native Loader) ---
+let currentDosInstance = null;
+
+function loadShareware(gameId, bundleUrl) {
     const modal = document.getElementById('arcade-player-container');
-    const iframe = document.getElementById('arcade-iframe');
+    const container = document.getElementById('arcade-game-container');
     const title = document.getElementById('arcade-game-title');
 
     let gameTitle = 'Retro Game';
     if (gameId === 'doom') gameTitle = 'DOOM (Shareware 1993)';
-    else if (gameId === 'simcity') gameTitle = 'SimCity 2000 (Demo 1993)';
-    else if (gameId === 'pop') gameTitle = 'Prince of Persia (MS-DOS 1990)';
-    else if (gameId === 'cnc') gameTitle = 'Command & Conquer (RTS)';
+    else if (gameId === 'simcity') gameTitle = 'SimCity 2000 (1993)';
+    else if (gameId === 'pop') gameTitle = 'Prince of Persia (1990)';
+    else if (gameId === 'dune2') gameTitle = 'Dune II: Westwood RTS (1992)';
 
     title.innerText = gameTitle;
-    iframe.src = embedUrl;
-    modal.style.display = 'block';
+    if (modal) modal.style.display = 'block';
 
-    modal.scrollIntoView({ behavior: 'smooth' });
+    // Stop previous instance and clear container
+    if (currentDosInstance && currentDosInstance.stop) {
+        try { currentDosInstance.stop(); } catch(e){}
+        currentDosInstance = null;
+    }
+    if (container) container.innerHTML = '';
+
+    // Run JS-DOS v8 with correct options object syntax
+    if (window.Dos && container) {
+        currentDosInstance = Dos(container, {
+            url: bundleUrl,
+            theme: 'dark'
+        });
+    }
+
+    if (modal) modal.scrollIntoView({ behavior: 'smooth' });
 }
 
 function closeShareware() {
     const modal = document.getElementById('arcade-player-container');
-    const iframe = document.getElementById('arcade-iframe');
-    iframe.src = ''; 
-    modal.style.display = 'none';
+    const container = document.getElementById('arcade-game-container');
+    if (currentDosInstance && currentDosInstance.stop) {
+        try { currentDosInstance.stop(); } catch(e){}
+        currentDosInstance = null;
+    }
+    if (container) container.innerHTML = '';
+    if (modal) modal.style.display = 'none';
 }
 
 function toggleNativeFullscreen() {
