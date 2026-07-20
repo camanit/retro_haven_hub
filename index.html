@@ -113,42 +113,42 @@
             </div>
 
             <div class="arcade-grid">
-                <!-- Doom Card -->
-                <div class="game-card" onclick="loadShareware('doom', 'https://cdn.dos.zone/custom/dos/doom.jsdos')">
-                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg');"></div>
+                <!-- Super Mario Bros Card -->
+                <div class="game-card" onclick="loadShareware('mario', 'https://raw.githubusercontent.com/bfirsh/jsnes/master/roms/Super_Mario_Bros.(JU)[!].nes', 'nes')">
+                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.f4v.png');"></div>
                     <div class="game-card-info">
-                        <h3>DOOM (Shareware 1993)</h3>
-                        <p>Game FPS legendaris buatan ID Software tahun 1993 yang merevolusi dunia game 3D.</p>
+                        <h3>Super Mario Bros (1985)</h3>
+                        <p>Game platformer paling ikonik sepanjang masa. Petualangan Mario menyelamatkan Putri Peach!</p>
                         <span class="play-btn-card">▶ MAIN SEKARANG</span>
                     </div>
                 </div>
 
-                <!-- SimCity Card -->
-                <div class="game-card" onclick="loadShareware('simcity', 'https://cdn.dos.zone/custom/dos/simcity-2000.jsdos')">
-                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/a/a6/SimCity_2000_cover.jpg');"></div>
+                <!-- Pac-Man Card -->
+                <div class="game-card" onclick="loadShareware('pacman', 'https://raw.githubusercontent.com/bfirsh/jsnes/master/roms/Pac-Man.(Namco)[!].nes', 'nes')">
+                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/0/05/Pac-Man_arcade_poster.car.png');"></div>
                     <div class="game-card-info">
-                        <h3>SimCity 2000 (1993)</h3>
-                        <p>Game simulasi pembangunan kota klasik buatan Maxis. Bangun kota impian Anda.</p>
+                        <h3>Pac-Man (1980)</h3>
+                        <p>Game arcade legendaris buatan Namco. Kumpulkan titik-titik dan hindari para hantu!</p>
                         <span class="play-btn-card">▶ MAIN SEKARANG</span>
                     </div>
                 </div>
 
-                <!-- Prince of Persia Card -->
-                <div class="game-card" onclick="loadShareware('pop', 'https://cdn.dos.zone/custom/dos/prince-of-persia.jsdos')">
-                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/e/e0/PoP_Original_Cover.jpg');"></div>
+                <!-- Tetris Card -->
+                <div class="game-card" onclick="loadShareware('tetris', 'https://raw.githubusercontent.com/bfirsh/jsnes/master/roms/Tetris.(U)[!].nes', 'nes')">
+                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/7/7d/Tetris_box.jpg');"></div>
                     <div class="game-card-info">
-                        <h3>Prince of Persia (1990)</h3>
-                        <p>Game platformer legendaris dengan animasi gerakan tubuh terhalus pada masanya.</p>
+                        <h3>Tetris (1989)</h3>
+                        <p>Game teka-teki balok paling populer di dunia. Susun balok dan pecahkan skor tertinggi!</p>
                         <span class="play-btn-card">▶ MAIN SEKARANG</span>
                     </div>
                 </div>
 
-                <!-- Dune II (Westwood RTS Classic) Card -->
-                <div class="game-card" onclick="loadShareware('dune2', 'https://cdn.dos.zone/custom/dos/dune-2.jsdos')">
-                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/5/5a/C%26C_Red_Alert_2_Coverart.jpg');"></div>
+                <!-- Zelda Card -->
+                <div class="game-card" onclick="loadShareware('zelda', 'https://raw.githubusercontent.com/bfirsh/jsnes/master/roms/Legend_of_Zelda,_The_(U)_(PRG1).nes', 'nes')">
+                    <div class="game-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://upload.wikimedia.org/wikipedia/en/4/41/Legend_of_Zelda_Coverart.png');"></div>
                     <div class="game-card-info">
-                        <h3>Dune II: Westwood RTS (1992)</h3>
-                        <p>Game strategi pelopor buatan Westwood Studios sebelum Red Alert & C&C. Mainkan langsung di browser!</p>
+                        <h3>The Legend of Zelda (1986)</h3>
+                        <p>Game petualangan klasik buatan Nintendo. Jelajahi kerajaan Hyrule dan kalahkan Ganon!</p>
                         <span class="play-btn-card">▶ MAIN SEKARANG</span>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
             <!-- Arcade Active Player Modal/Viewport -->
             <div id="arcade-player-container" class="arcade-player" style="display: none;">
                 <div class="player-header">
-                    <h4 id="arcade-game-title">DOOM (Shareware)</h4>
+                    <h4 id="arcade-game-title">Game Retro Instant</h4>
                     <div style="display: flex; gap: 15px; align-items: center;">
                         <button class="fullscreen-btn-modal" onclick="toggleNativeFullscreen()">🖥️ Layar Penuh</button>
                         <button class="close-btn" onclick="closeShareware()">❌ Tutup Game</button>
@@ -165,10 +165,10 @@
                 </div>
                 <div class="player-iframe-wrapper">
                     <div class="scanlines"></div>
-                    <div id="arcade-game-container" style="width: 100%; height: 100%;"></div>
+                    <iframe id="arcade-iframe" src="" allowfullscreen></iframe>
                 </div>
                 <div class="player-footer">
-                    <p>💡 Menggunakan emulator JS-DOS WebAssembly yang cepat, aman, dan dapat dimainkan langsung di browser.</p>
+                    <p>💡 Menggunakan emulator high-performance EmulatorJS terintegrasi. Tanpa instalasi & tanpa blokir CORS!</p>
                 </div>
             </div>
         </section>

@@ -38,18 +38,30 @@
         <div id="game"></div>
     </div>
     <script>
-        // Retrieve file and system from parent window
+        // Retrieve file or direct URL and system from parent window
         const file = window.parent.currentRomFile;
+        const directUrl = window.parent.currentRomUrl;
         const system = window.parent.currentSystem;
 
-        if (file && system) {
-            // Append hash fragment with real filename so EmulatorJS detects the extension and auto-boots
-            const gameUrl = URL.createObjectURL(file) + '#' + file.name;
+        if ((file || directUrl) && system) {
+            let gameUrl = '';
+            let gameName = 'Game';
+
+            if (file) {
+                gameUrl = URL.createObjectURL(file) + '#' + file.name;
+                gameName = file.name;
+            } else if (directUrl) {
+                gameUrl = directUrl;
+                gameName = 'Arcade Game';
+            }
             
-            // Map the system key to the correct EmulatorJS core identifier
-            let core = '';
+            // Map the system key to the correct EmulatorJS core0
+            let core = 'nes';
             if (system === 'gb') core = 'gb';
+            else if (system === 'gba') core = 'gba';
+            else if (system === 'snes') core = 'snes';
             else if (system === 'nes') core = 'nes';
+            else if (system === 'sega') core = 'segaMD';
             else if (system === 'psp') core = 'ppsspp';
             else if (system === 'psx') core = 'psx';
             else if (system === 'dos') core = 'dosbox_pure';
@@ -58,7 +70,7 @@
             window.EJS_player = '#game';
             window.EJS_core = core;
             window.EJS_gameUrl = gameUrl;
-            window.EJS_gameName = file.name;
+            window.EJS_gameName = gameName;
             window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
             window.EJS_startOnLoaded = true; // Auto start the game once files load
             window.EJS_threads = true; // Enable multithreading required by PPSSPP core
@@ -69,14 +81,16 @@
             document.body.appendChild(loader);
 
             // Clean up the object URL when the window is unloaded to free memory
-            window.addEventListener('unload', () => {
-                URL.revokeObjectURL(gameUrl);
-            });
+            if (file) {
+                window.addEventListener('unload', () => {
+                    URL.revokeObjectURL(gameUrl);
+                });
+            }
         } else {
             document.getElementById('game-container').innerHTML = `
                 <div class="error-message">
                     <h3>❌ ERROR</h3>
-                    <p>Game file or system context not found. Please drag and drop the file again in RetroHaven.</p>
+                    <p>Game file or system context not found. Please select a game or drag and drop a file in RetroHaven.</p>
                 </div>
             `;
         }
