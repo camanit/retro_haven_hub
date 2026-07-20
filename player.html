@@ -60,6 +60,7 @@
             window.EJS_gameName = file.name;
             window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
             window.EJS_startOnLoaded = true; // Auto start the game once files load
+            window.EJS_threads = true; // Enable multithreading required by PPSSPP core
 
             // Load EmulatorJS script dynamically
             const loader = document.createElement('script');
