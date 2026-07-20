@@ -43,7 +43,8 @@
         const system = window.parent.currentSystem;
 
         if (file && system) {
-            const gameUrl = URL.createObjectURL(file);
+            // Append hash fragment with real filename so EmulatorJS detects the extension and auto-boots
+            const gameUrl = URL.createObjectURL(file) + '#' + file.name;
             
             // Map the system key to the correct EmulatorJS core identifier
             let core = '';
