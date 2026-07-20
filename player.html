@@ -51,7 +51,8 @@
                 gameUrl = URL.createObjectURL(file) + '#' + file.name;
                 gameName = file.name;
             } else if (directUrl) {
-                gameUrl = directUrl;
+                const ext = system === 'nes' ? '.nes' : (system === 'snes' ? '.sfc' : (system === 'gb' ? '.gb' : (system === 'gba' ? '.gba' : '.bin')));
+                gameUrl = directUrl.includes('#') ? directUrl : (directUrl + '#game' + ext);
                 gameName = 'Arcade Game';
             }
             
@@ -73,7 +74,9 @@
             window.EJS_gameName = gameName;
             window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
             window.EJS_startOnLoaded = true; // Auto start the game once files load
-            window.EJS_threads = true; // Enable multithreading required by PPSSPP core
+            if (core === 'ppsspp') {
+                window.EJS_threads = true; // Only PSP requires multithreading
+            }
 
             // Load EmulatorJS script dynamically
             const loader = document.createElement('script');

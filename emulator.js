@@ -129,10 +129,10 @@ function loadShareware(gameId, directUrl, system) {
     const title = document.getElementById('arcade-game-title');
 
     let gameTitle = 'Retro Game';
-    if (gameId === 'mario') gameTitle = 'Super Mario Bros (1985)';
-    else if (gameId === 'pacman') gameTitle = 'Pac-Man (1980)';
-    else if (gameId === 'tetris') gameTitle = 'Tetris (1989)';
-    else if (gameId === 'zelda') gameTitle = 'The Legend of Zelda (1986)';
+    if (gameId === '2048') gameTitle = '2048 (NES Edition)';
+    else if (gameId === 'pong') gameTitle = 'Pong Classic (1972)';
+    else if (gameId === 'croom') gameTitle = 'Castle Room 8-Bit';
+    else if (gameId === 'quest') gameTitle = '8-Bit Hardware Quest';
 
     title.innerText = gameTitle;
 
