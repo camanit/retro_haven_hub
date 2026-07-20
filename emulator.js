@@ -55,40 +55,60 @@ if (fileInput) {
     });
 }
 
+let pendingFile = null;
+
 function handleRomFile(file) {
     const name = file.name.toLowerCase();
+    
+    // Check if it's a disc image (.iso, .img, .bin, .cso) where user can choose between PSP and PS1
+    if (name.endsWith('.iso') || name.endsWith('.img') || name.endsWith('.bin') || name.endsWith('.cso')) {
+        pendingFile = file;
+        const screenEmpty = document.getElementById('emulator-screen');
+        const modal = document.getElementById('system-selector-modal');
+        const fileNameDisplay = document.getElementById('modal-filename-display');
+        
+        screenEmpty.style.display = 'none';
+        modal.style.display = 'flex';
+        if (fileNameDisplay) fileNameDisplay.innerText = file.name;
+        return;
+    }
+
+    let system = '';
+    if (name.endsWith('.gb') || name.endsWith('.gbc')) system = 'gb';
+    else if (name.endsWith('.nes')) system = 'nes';
+    else {
+        setTimeout(() => {
+            alert('Format file tidak didukung! Masukkan file .gb, .nes, .iso, .img, atau .bin.');
+        }, 300);
+        return;
+    }
+
+    launchEmulatorWithFile(file, system);
+}
+
+function confirmSystemSelection(system) {
+    const modal = document.getElementById('system-selector-modal');
+    if (modal) modal.style.display = 'none';
+    if (pendingFile) {
+        launchEmulatorWithFile(pendingFile, system);
+        pendingFile = null;
+    }
+}
+
+function launchEmulatorWithFile(file, system) {
     const screenEmpty = document.getElementById('emulator-screen');
     const activeContainer = document.getElementById('emulator-active-container');
     const iframe = document.getElementById('emulator-iframe');
 
     // Render loading state
+    screenEmpty.style.display = 'flex';
     screenEmpty.innerHTML = `
         <div class="drop-zone-icon">⚡</div>
         <h3 style="color:var(--accent-green); font-family:'Share Tech Mono';">MEMPROSES FILE:</h3>
         <p style="color:#fff; font-weight:bold; margin-top:5px;">${file.name.toUpperCase()}</p>
-        <p id="rom-status-detail" style="color:var(--text-muted); font-size:0.8rem; margin-top:10px;">Menghubungkan ke core emulator...</p>
+        <p id="rom-status-detail" style="color:var(--text-muted); font-size:0.8rem; margin-top:10px;">Menghubungkan ke core emulator (${system.toUpperCase()})...</p>
     `;
 
-    let system = '';
-    if (name.endsWith('.gb') || name.endsWith('.gbc')) system = 'gb';
-    else if (name.endsWith('.nes')) system = 'nes';
-    else if (name.endsWith('.iso')) system = 'psp';
-    else if (name.endsWith('.bin') || name.endsWith('.img')) system = 'psx';
-    else {
-        setTimeout(() => {
-            alert('Format file tidak didukung! Masukkan file .gb, .nes, .iso (PSP), atau .bin/.img (PS1).');
-            // Reset screen
-            screenEmpty.innerHTML = `
-                <div class="drop-zone-icon">📥</div>
-                <h3>SERET & LEPAS ROM / ISO DI SINI</h3>
-                <p>mendukung Game Boy (.gb), Nintendo (.nes), PSP (.iso), & PS1 (.bin)</p>
-                <button class="action-btn" onclick="document.getElementById('rom-file-input').click()">Pilih File ROM/ISO</button>
-            `;
-        }, 1000);
-        return;
-    }
-
-    // Load emulator player based on extension type
     setTimeout(() => {
         screenEmpty.style.display = 'none';
         activeContainer.style.display = 'block';
@@ -99,7 +119,7 @@ function handleRomFile(file) {
 
         // Redirect the iframe to our local player
         iframe.src = "player.html";
-    }, 1800);
+    }, 1200);
 }
 
 // --- Tab 2: Arcade Classics (Shareware Loader) ---
